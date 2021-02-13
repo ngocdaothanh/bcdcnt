@@ -23,8 +23,10 @@ node build/src/index.js nang-luong-tich-cuc-763
 ```
 download/
   files/ (shared among playlists)
-    <song id>-<file id>.mp3  <----------------------+
+    <song id>-<file id>.mp3  <------ symlink -------+
                                                     |
   <playlist id>/                                    |
     <song order>-<title>-<artist1>-<artist2>.mp3  --+
 ```
+
+![Symlinks](./symlinks.jpg)
