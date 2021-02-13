@@ -1,6 +1,6 @@
 import {downloadPlaylistHtml, downloadSong} from './download'
 import {parsePlaylist} from './parse'
-import {createSymlink} from './symlink'
+import {createSymlink, savePlaylist} from './symlink'
 
 async function main() {
   if (process.argv.length !== 3) {
@@ -31,6 +31,8 @@ async function main() {
       console.error(error)
     }
   }
+
+  savePlaylist(playlistId, songs)
 }
 
 main()

@@ -29,13 +29,18 @@ export function createSymlink(
   return symlinkFilePath
 }
 
+export function savePlaylist(playlistId: string, songs: Song[]) {
+  const playlistDir = getPlaylistDir(playlistId)
+  const json = JSON.stringify(songs, null, 2)
+  fs.writeFileSync(`${playlistDir}/songs.json`, json)
+}
+
 function getSymlinkFilePath(
   playlistId: string,
   order: number,
   {file, title, artists}: Song
 ): string {
-  const playlistDir = `${DOWNLOAD_DIR}/${playlistId}`
-  fs.mkdirSync(playlistDir, {recursive: true})
+  const playlistDir = getPlaylistDir(playlistId)
 
   const formattedOrder = formatOrder(order)
 
@@ -48,6 +53,12 @@ function getSymlinkFilePath(
   const extname = path.extname(file)
 
   return `${playlistDir}/${formattedOrder}-${sanitizedTitle}-${sanitizedArtistNames}${extname}`
+}
+
+function getPlaylistDir(playlistId: string): string {
+  const playlistDir = `${DOWNLOAD_DIR}/${playlistId}`
+  fs.mkdirSync(playlistDir, {recursive: true})
+  return playlistDir
 }
 
 function formatOrder(order: number): string {
