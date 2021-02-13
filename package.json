@@ -1,0 +1,32 @@
+{
+  "name": "",
+  "version": "0.0.0",
+  "description": "",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "files": [
+    "build/src"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [],
+  "scripts": {
+    "compile": "tsc",
+    "start": "node build/src/index.js",
+    "clean": "gts clean",
+    "lint": "gts lint",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.2",
+    "@types/node-fetch": "^2.5.8",
+    "gts": "^3.1.0",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "node-fetch": "^2.6.1"
+  }
+}

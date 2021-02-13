@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/gts/",
+  "rules": {
+    "semi": ["error", "never"],
+    "comma-dangle": ["error", "never"],
+    "quotes": ["error", "single"],
+
+    "array-bracket-spacing": ["error", "never"],
+    "object-curly-spacing": ["error", "never"]
+  }
+}
