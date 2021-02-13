@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import sanitize from 'sanitize-filename'
 
 import {Song} from './parse'
 
@@ -37,9 +38,16 @@ function getSymlinkFilePath(
   fs.mkdirSync(playlistDir, {recursive: true})
 
   const formattedOrder = formatOrder(order)
-  const artistNames = artists.map(({name}) => name).join('-')
+
+  const sanitizedTitle = sanitize(title, {replacement: '-'})
+
+  const sanitizedArtistNames = artists
+    .map(({name}) => sanitize(name, {replacement: '-'}))
+    .join('-')
+
   const extname = path.extname(file)
-  return `${playlistDir}/${formattedOrder}-${title}-${artistNames}${extname}`
+
+  return `${playlistDir}/${formattedOrder}-${sanitizedTitle}-${sanitizedArtistNames}${extname}`
 }
 
 function formatOrder(order: number): string {
